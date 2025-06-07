@@ -1,14 +1,15 @@
 package org.movies.java.spring.best_of_the_year.controller;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.movies.java.spring.best_of_the_year.Models.Movies;
+import org.movies.java.spring.best_of_the_year.Models.Songs;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -23,10 +24,11 @@ public class HomeController {
 
     @GetMapping("/movies")
     public String movies(Model model) {
-        model.addAttribute("movies", getBestMovies());
-
+        model.addAttribute("movies", getBestMovies()); // ✅ nome corretto
         return "movies";
     }
+
+    
 
     private List<Movies> getBestMovies() {
         List<Movies> moviesList = new ArrayList<>();
@@ -38,20 +40,39 @@ public class HomeController {
     }
 
     @GetMapping("/songs")
-    public String song(Model model) {
-       
-
+    public String songs(Model model) {
+        model.addAttribute("songs", getBestSong());
         return "songs";
-
     }
 
-    private List<Movies> getBestSong() {
-        List<Movies> songsList = new ArrayList<>();
+    private List<Songs> getBestSong() {
+        List<Songs> songsList = new ArrayList<>();
 
-        songsList.add(new Movies(1, "Live Forever"));
-        songsList.add(new Movies(2, "Don't Look Back in Anger"));
-        songsList.add(new Movies(3, "Wonderwall"));
+        songsList.add(new Songs(1, "Live Forever"));
+        songsList.add(new Songs(2, "Don't Look Back in Anger"));
+        songsList.add(new Songs(3, "Wonderwall"));
         return songsList;
     }
+
+    @GetMapping("/movies/{id}")
+public String movieDetail(@PathVariable int id, Model model) {
+    Movies movie = getBestMovies().stream()
+        .filter(m -> m.getId() == id)
+        .findFirst()
+        .orElse(null);
+    model.addAttribute("title", movie != null ? movie.getTitle() : "Movie not found");
+    return "detail";
+}
+
+@GetMapping("/songs/{id}")
+public String songDetail(@PathVariable int id, Model model) {
+    Songs song = getBestSong().stream()
+        .filter(s -> s.getId() == id)
+        .findFirst()
+        .orElse(null);
+    model.addAttribute("title", song != null ? song.getTitle() : "Song not found");
+    return "detail";
+}
+
 
 }

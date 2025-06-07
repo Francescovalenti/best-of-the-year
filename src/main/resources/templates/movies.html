@@ -6,5 +6,13 @@
 <body>
     <h2>Best Movies:</h2>
     <p th:text="${list}"></p>
+    <section class="movies-list" th:if="${movies.size() > 0}">
+    <ul th:each="movie : ${movies}" th:object="${movie}">
+        <li class="title" th:text="*{title}" />
+    
+    </ul>
+</section>
+</section>
+
 </body>
 </html>

@@ -5,10 +5,12 @@
 </head>
 <body>
     <h2>Best Songs:</h2>
-    <ul>
-        <li th:each="song : ${songs}">
-            <a th:href="@{/songs/{id}(id=${song.id})}" th:text="${song.title}"></a>
-        </li>
-    </ul>
+
+    <section class="songs-list" th:if="${songs.size() > 0}">
+        <ul>
+            <li th:each="song : ${songs}" th:text="${song.title}"></li>
+        </ul>
+    </section>
+
 </body>
 </html>
