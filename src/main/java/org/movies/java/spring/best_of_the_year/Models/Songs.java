@@ -14,7 +14,7 @@ public int getId(){
     return id;
 }
 
-public void setId(){
+public void setId( int id){
     this.id=id;
 }
 
@@ -22,7 +22,7 @@ public String songs(){
     return songs;
 }
 
-public void setSongs(){
+public void setSongs( String songs){
     this.songs=songs;
 }
 }

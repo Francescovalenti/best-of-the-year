@@ -1,6 +1,6 @@
 package org.movies.java.spring.best_of_the_year.controller;
 
-import java.time.LocalDate;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/")
 public class HomeController {
-    @GetMapping("/home")
+    @GetMapping("/")
     public String home(Model model) {
         model.addAttribute("name", "Francesco");
 
@@ -23,35 +23,35 @@ public class HomeController {
 
     @GetMapping("/movies")
     public String movies(Model model) {
-        model.addAttribute("videogames", getBestMovies());
-              
+        model.addAttribute("movies", getBestMovies());
+
         return "movies";
     }
 
     private List<Movies> getBestMovies() {
         List<Movies> moviesList = new ArrayList<>();
 
-         moviesList.add(new Movies(1, "Inception"));
-            moviesList.add(new Movies(2, "The Dark knight"));
-            moviesList.add(new Movies(3, "Oppenhaimer"));
-            return moviesList;
+        moviesList.add(new Movies(1, "Inception"));
+        moviesList.add(new Movies(2, "The Dark knight"));
+        moviesList.add(new Movies(3, "Oppenhaimer"));
+        return moviesList;
     }
 
-    
-    @GetMapping("/song")
+    @GetMapping("/songs")
     public String song(Model model) {
-        model.addAttribute("videogames", getBestSong());
-              
-        return "song";
+       
 
-}
- private List<Movies> getBestSong() {
+        return "songs";
+
+    }
+
+    private List<Movies> getBestSong() {
         List<Movies> songsList = new ArrayList<>();
 
-         songsList.add(new Movies(1, "Live Forever"));
-            songsList.add(new Movies(2, "Don't Look Back in Anger"));
-            songsList.add(new Movies(3, "Wonderwall"));
-            return songsList;
+        songsList.add(new Movies(1, "Live Forever"));
+        songsList.add(new Movies(2, "Don't Look Back in Anger"));
+        songsList.add(new Movies(3, "Wonderwall"));
+        return songsList;
     }
 
 }

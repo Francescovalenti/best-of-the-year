@@ -16,7 +16,7 @@ public int getId(){
 
 }
 
-public void setId(){
+public void setId(int id){
     this.id=id;
 }
 
@@ -25,7 +25,7 @@ public String getTitle(){
 
 }
 
-public void setTitle(){
+public void setTitle(String title){
     this.title=title;
 }
 }
