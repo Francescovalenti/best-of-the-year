@@ -24,7 +24,7 @@ public class HomeController {
 
     @GetMapping("/movies")
     public String movies(Model model) {
-        model.addAttribute("movies", getBestMovies()); // ✅ nome corretto
+        model.addAttribute("movies", getBestMovies()); 
         return "movies";
     }
 
