@@ -1,16 +1,16 @@
 package org.movies.java.spring.best_of_the_year.Models;
 
 public class Songs {
-    private int id;
+    private Integer id;
     private String title;
 
 
-    public Songs (int id,String songs){
+    public Songs (Integer id,String songs){
     this.id=id;
     this.title=songs;
 }
 
-public int getId(){
+public Integer getId(){
     return id;
 }
 

@@ -2,7 +2,7 @@ package org.movies.java.spring.best_of_the_year.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 import org.movies.java.spring.best_of_the_year.Models.Movies;
 import org.movies.java.spring.best_of_the_year.Models.Songs;
@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+
 
 @Controller
 @RequestMapping("/")
@@ -54,25 +56,40 @@ public class HomeController {
         return songsList;
     }
 
-    @GetMapping("/movies/{id}")
-public String movieDetail(@PathVariable int id, Model model) {
-    Movies movie = getBestMovies().stream()
-        .filter(m -> m.getId() == id)
-        .findFirst()
-        .orElse(null);
-    model.addAttribute("title", movie != null ? movie.getTitle() : "Movie not found");
-    return "detail";
+@GetMapping("/movies/{id}")
+public String singleMovie(Model model, @PathVariable("id") Integer movieId) {
+   boolean isMovieFound= false;
+   Movies movie = null;
+   for (Movies currentMovies : getBestMovies()) {
+    if (currentMovies.getId() == movieId) {
+        isMovieFound = true;
+        movie = currentMovies;
+        break;
+        
+    }
+   }
+ model.addAttribute("isFound",isMovieFound);
+ model.addAttribute("movie",movie);
+    return  "single-movie";
 }
 
 @GetMapping("/songs/{id}")
-public String songDetail(@PathVariable int id, Model model) {
-    Songs song = getBestSong().stream()
-        .filter(s -> s.getId() == id)
-        .findFirst()
-        .orElse(null);
-    model.addAttribute("title", song != null ? song.getTitle() : "Song not found");
-    return "detail";
+public String singleSongs(Model model, @PathVariable("id") Integer songId) {
+   boolean isSongsFound= false;
+   Songs song = null;
+   for (Songs currentSongs : getBestSong()) {
+    if (currentSongs.getId() == songId) {
+        isSongsFound = true;
+        song = currentSongs;
+        break;
+        
+    }
+   }
+ model.addAttribute("isFound",isSongsFound);
+ model.addAttribute("movie",song);
+    return  "single-movie";
 }
+
 
 
 }

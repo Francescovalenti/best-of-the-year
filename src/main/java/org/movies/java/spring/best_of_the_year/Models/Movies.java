@@ -1,10 +1,10 @@
 package org.movies.java.spring.best_of_the_year.Models;
 
 public class Movies {
-    private int id;
+    private Integer id;
     private String title;
 
-    public Movies (int id,String title){
+    public Movies (Integer id,String title){
     this.id=id;
     this.title=title;
 
@@ -16,7 +16,7 @@ public int getId(){
 
 }
 
-public void setId(int id){
+public void setId(Integer id){
     this.id=id;
 }
 
